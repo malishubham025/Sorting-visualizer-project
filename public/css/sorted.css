@@ -1,0 +1,128 @@
+.a{
+     border: none;
+     width: 40px !important;
+     background-color: #FF6E31;
+     margin-left: 3px;
+     margin-right: 3px;
+     transition-duration: 2000ms;
+     font-family: 'Montserrat', sans-serif;
+     color: white;
+     text-align: center;
+
+}
+.navbar-brand{
+    color: white !important;
+    font-weight: 500 !important;
+}
+.navbar{
+    background-color: #393E46;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600 !important;
+    color: white !important;
+    background-color: transparent;
+}  
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #222831 !important;
+
+    /* overflow: hidden; */
+    /* background-color: #1A120B !important; */
+    
+}
+.translate{
+    transform: translate(-20px);
+}
+.trans{
+    display: none !important;
+}
+.translatem{
+    transform: translate(20px);
+}
+button{
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+/* .navbar{
+    margin-bottom: 20px;
+} */
+.main{
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80%;
+    height: 500px;
+    margin: 0 auto 0 auto;
+    /* overflow: hidden !important; */
+    background-color: #243763;
+    margin-top: 20px;
+    
+
+}
+
+.a:hover{
+    cursor: pointer;
+    background-color: #73777B;
+    scale: 1.02;
+}
+ 
+.generate{
+    cursor: pointer;
+    
+    
+}
+.generate:hover{
+    
+    transform: scale(1.1);
+}
+.speaker{
+    
+    
+    
+    height: 30px;
+    width: 30px;
+    /* background-color: #FF6E31; */
+    text-align: center;
+    /* cursor: pointer; */
+    /* border-radius: 80%; */
+}
+.fa{
+    
+    cursor: pointer;
+    /* position: absolute;
+    bottom: 400px; */
+    color: antiquewhite !important;
+    
+}
+
+.fa:hover{
+    color: #73777B !important;
+    scale: 1.1;
+}
+.vol{
+    position: absolute !important;
+    bottom: 40px !important;
+    left: 134px !important;
+
+}
+.cross{
+    position: absolute !important;
+    bottom: 25px !important;
+    left: 194px !important;
+
+}
+.ran{
+    position: absolute !important;
+    bottom: 30px !important;
+    left: 234px !important;
+}
+.submain{
+    position: absolute;
+    clip-path: circle(6.4% at 50% 50%);
+    overflow: hidden;
+    transition-duration: 1000ms;
+    height: 500px;
+    width: 500px;
+    background-color: aqua !important;
+}

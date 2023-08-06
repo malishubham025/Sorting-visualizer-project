@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/sorted.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="start">
+       
+         
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Sorting Visualiser</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            
+          <ul class="navbar-nav  ml-auto">
+            <li class="nav-item active">
+                <form action="/" method="post" class="hi">
+                    <button class=" j generate btn btn-outline-light">
+                        generate
+                   </button>
+                   
+                </form>
+                
+              
+                           </li>
+                       
+            <li class="nav-item">
+                <button class="bubble generate btn btn-outline-light">
+                    bubble
+                </button>
+               
+            </li>
+            <li class="nav-item">
+                <button class="insertion generate btn btn-outline-light">
+                    insertion
+                </button> 
+            </li>
+       
+            <li class="nav-item">
+              <button class="selection generate btn btn-outline-light">
+                  selection
+              </button>
+          </li>
+          </ul>
+        </div>
+      </nav>
+ 
+  <div class="sub">
+   
+  <div class="main">
+  <%for(var i=0;i<20;i++){%>
+    <div class="a <%=DIV[i]%>"><%=DIV[i]%></div>
+    <%}%>
+
+  </div>
+  <div class="speaker">
+    <i class="fa fa-volume-up fa-lg vol" aria-hidden="true"></i>
+   </div>
+  </div>
+</div>
+
+<!-- <button class="vol">volume</button>
+<button class="stop">stop</button> -->
+<i class="fa fa-2x fa-times cross" aria-hidden="true"></i>
+
+<input type="range" class="form-range ran" min="0.5" max="2" value="1" step="0.1" id="customRange3">
+<script src="js/sorted.js"></script>
+</body>
+</html>
