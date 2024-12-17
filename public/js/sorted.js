@@ -26,61 +26,129 @@ for(var i=0;i<20;i++){
 
 var q=0;
 var o=0;
-function sleep(ms){
-    return new Promise((resolve)=>setTimeout(resolve,ms));
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+async function merge(arr, s, e) {
+    let mid = Math.floor((s + e) / 2);
+    let len1 = mid - s + 1;
+    let len2 = e - mid;
+    let arr1 = new Array(len1);
+    let arr2 = new Array(len2);
+    let i = s;
+    let j = 0, k = 0;
+    arr[mid].style.backgroundColor="green";
+    arr[s].style.backgroundColor="black";
+    arr[e].style.backgroundColor="black";
+    for (let i1 = 0; i1 < len1; i1++) {
+        arr1[i1] = Number(arr[i++].innerHTML);
+    }
+    for (let i1 = 0; i1 < len2; i1++) {
+        arr2[i1] = Number(arr[i++].innerHTML);
+    }
+
+    i = s;
+    j = 0, k = 0;
+    while (j < len1 && k < len2) {
+        if (arr1[j] <= arr2[k]) {
+            arr[i].innerHTML = arr1[j];
+            arr[i].style.backgroundColor = "blue";
+            j++;
+        } else {
+            arr[i].innerHTML = arr2[k];
+            arr[i].style.backgroundColor = "blue";
+            k++;
+        }
+        await sleep(1000);
+        i++;
+    }
+    while (j < len1) {
+        arr[i].innerHTML = arr1[j];
+        arr[i].style.backgroundColor = "blue";
+        j++;
+        i++;
+    }
+    while (k < len2) {
+        arr[i].innerHTML = arr2[k];
+        arr[i].style.backgroundColor = "green";
+        k++;
+        i++;
+    }
+    arr.forEach((x) => {
+        x.style.height = Number(x.innerHTML) * 25 + "px";
+        x.style.backgroundColor = "aqua";
+    });
+}
+let isPaused = false;
+let shouldStop = false;
+
+async function mergeSort(arr, s, e) {
+    if (s >= e) {
+        return;
+    }
+    let mid = Math.floor((s + e) / 2);
+    await mergeSort(arr, s, mid);  // Await the recursive call
+    await mergeSort(arr, mid + 1, e);  // Await the recursive call
+    await merge(arr, s, e);  // Await the merge operation
+}
+
+
+function startSorting() {
+    isPaused = false;
+    // if (shouldStop) {
+        merges();
+    // }
+}
+
+function pauseSorting() {
+    isPaused = true;
+}
+
+
+
+async function merges() {
+    var arr = document.querySelectorAll(".a");
+    console.log("hi", arr);
+    await mergeSort(arr, 0, arr.length - 1);  // Await the sorting operation
+    console.log("hello", arr);
+}
+
 
 //bubble started
 async function Bubble(){
-    for(var  i = 0 ; i<20;i++){
-        for(var j = 0 ;j<20-i-1;j++){
-            if( Number(document.querySelectorAll(".a")[j].innerHTML) > Number(document.querySelectorAll(".a")[j+1].innerHTML)){
-                // var c=0;
-                for(var x=0;x<20;x++){
-                    if(x!==j && x!==j+1 ){
-                        document.querySelectorAll(".a")[x].style.backgroundColor="aqua";
+    
+    merges();
+//     for(var  i = 0 ; i<20;i++){
+//         for(var j = 0 ;j<20-i-1;j++){
+//             if( Number(document.querySelectorAll(".a")[j].innerHTML) > Number(document.querySelectorAll(".a")[j+1].innerHTML)){
+//                 // var c=0;
+//                 for(var x=0;x<20;x++){
+//                     if(x!==j && x!==j+1 ){
+//                         document.querySelectorAll(".a")[x].style.backgroundColor="aqua";
                         
-                    }
-                }
+//                     }
+//                 }
                
         
                     
-                    var c=document.querySelectorAll(".a")[j].innerHTML;
-                    document.querySelectorAll(".a")[j].innerHTML=document.querySelectorAll(".a")[j+1].innerHTML;
-                    document.querySelectorAll(".a")[j].style.height= Number(document.querySelectorAll(".a")[j].innerHTML)*25+"px";
-                    document.querySelectorAll(".a")[j].style.backgroundColor="black";
-                    document.querySelectorAll(".a")[j+1].innerHTML=c;
-                    document.querySelectorAll(".a")[j+1].style.height= Number(document.querySelectorAll(".a")[j+1].innerHTML)*25+"px";
-                    document.querySelectorAll(".a")[j+1].style.backgroundColor="black";
-                    await sleep(150);
+//                     var c=document.querySelectorAll(".a")[j].innerHTML;
+//                     document.querySelectorAll(".a")[j].innerHTML=document.querySelectorAll(".a")[j+1].innerHTML;
+//                     document.querySelectorAll(".a")[j].style.height= Number(document.querySelectorAll(".a")[j].innerHTML)*25+"px";
+//                     document.querySelectorAll(".a")[j].style.backgroundColor="black";
+//                     document.querySelectorAll(".a")[j+1].innerHTML=c;
+//                     document.querySelectorAll(".a")[j+1].style.height= Number(document.querySelectorAll(".a")[j+1].innerHTML)*25+"px";
+//                     document.querySelectorAll(".a")[j+1].style.backgroundColor="black";
+//                     await sleep(150);
                 
              
-            }
+//             }
           
-        }
-        await sleep(150);
-}
-// q=1;
-// //console.log(alert("done"));
-
-// if(q==1){
-//     document.querySelector(".bubble").disabled=false;
-    
-//     document.querySelector(".bubble").addEventListener('click',function(){
-//         alert('already sorted');
-//         return;
-     
-          
-            
-        
-    
-    
-//     });
-    
-    
-    
-    
+//         }
+//         await sleep(150);
 // }
+
+// console.log("hello",arr);
 }
 // console.log(q);
 //bubble terminated=======================================================================
@@ -326,3 +394,75 @@ document.querySelector(".vol").addEventListener("click",function(){
         texttospeech("selection sort is the sorting algorithm in which we will take pivote element as the zeroth index element,   and we will search of the  smallest element in the rest of the array ,  and we will swap those two , the time complexity for selection sort in all three cases is O of n square");
     }
 })
+
+function partition(t, left, right) {
+    let pivotValue = Number(t[left].innerHTML); // Pivot value
+    let count = 0;
+
+    // Count how many elements are less than or equal to the pivot
+    for (let i = left + 1; i <= right; i++) {
+        if (Number(t[i].innerHTML) <= pivotValue) {
+            count++;
+        }
+    }
+
+    let pivotIndex = left + count;
+
+    // Swap pivot to its correct position visually
+    swapHeights(t, left, pivotIndex);
+
+    let i = left, j = right;
+
+    // Partitioning loop
+    while (i < pivotIndex && j > pivotIndex) {
+        while (i < pivotIndex && Number(t[i].innerHTML) <= pivotValue) {
+            i++;
+        }
+        while (j > pivotIndex && Number(t[j].innerHTML) > pivotValue) {
+            j--;
+        }
+        if (i < pivotIndex && j > pivotIndex) {
+            // Swap the heights and innerHTML to visually represent the swap
+            swapHeights(t, i, j);
+        }
+    }
+
+    return pivotIndex; // Return the pivot index
+}
+
+function quickSort(t, s, e) {
+    if (s >= e) return;
+    setTimeout(()=>{
+        let pivotIndex = partition(t, s, e);
+
+        // Recursively sort the left and right partitions
+        setTimeout(()=>{
+            quickSort(t, s, pivotIndex - 1);
+            quickSort(t, pivotIndex + 1, e);
+        },1000);
+
+    },1000);
+
+}
+
+// Helper function to swap visual heights and innerHTML
+function swapHeights(t, i, j) {
+    let tempHeight = t[i].style.height;
+    let tempValue = t[i].innerHTML;
+    
+    t[i].style.height = t[j].style.height;
+    t[i].innerHTML = t[j].innerHTML;
+
+    t[j].style.height = tempHeight;
+    t[j].innerHTML = tempValue;
+}
+
+// Event listener for the "Quick Sort" button
+document.querySelector(".quick").addEventListener("click", () => {
+    let t = document.querySelectorAll(".a"); // NodeList of elements
+    let e = t.length - 1;
+    let s = 0;
+
+    quickSort(t, s, e);
+});
+
